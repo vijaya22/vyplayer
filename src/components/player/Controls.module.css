@@ -1,0 +1,28 @@
+.row {
+  display: flex;
+  gap: 3px;
+  justify-content: center;
+  margin-bottom: 4px;
+}
+
+.btn {
+  flex: 1;
+  padding: 6px 4px;
+  font-size: 14px;
+  background: var(--win95-bg);
+  border: none;
+  cursor: pointer;
+  border-top: 2px solid var(--win95-light);
+  border-left: 2px solid var(--win95-light);
+  border-right: 2px solid var(--win95-darker);
+  border-bottom: 2px solid var(--win95-darker);
+  transition: none;
+}
+
+.btn:active {
+  border-top: 2px solid var(--win95-darker);
+  border-left: 2px solid var(--win95-darker);
+  border-right: 2px solid var(--win95-light);
+  border-bottom: 2px solid var(--win95-light);
+  padding: 7px 3px 5px 5px;
+}

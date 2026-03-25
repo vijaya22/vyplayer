@@ -1,0 +1,12 @@
+.panel {
+  position: fixed;
+  z-index: 10;
+  width: min(300px, 90vw);
+  background: var(--winamp-bg);
+  border-top: 2px solid #555;
+  border-left: 2px solid #555;
+  border-right: 2px solid #111;
+  border-bottom: 2px solid #111;
+  padding: 4px;
+  user-select: none;
+}

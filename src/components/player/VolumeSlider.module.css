@@ -1,0 +1,27 @@
+.row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.label {
+  font-family: var(--font-retro);
+  font-size: 6px;
+  color: var(--winamp-green);
+  min-width: 20px;
+}
+
+.value {
+  font-family: var(--font-retro);
+  font-size: 6px;
+  color: var(--winamp-green);
+  min-width: 20px;
+  text-align: right;
+}
+
+.slider {
+  flex: 1;
+  accent-color: var(--winamp-green);
+  height: 4px;
+  cursor: pointer;
+}

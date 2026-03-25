@@ -1,0 +1,49 @@
+.bar {
+  background: linear-gradient(to right, var(--win95-blue), var(--win95-blue-light));
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2px 4px;
+  margin-bottom: 4px;
+}
+
+.title {
+  font-family: var(--font-retro);
+  font-size: 7px;
+  color: #fff;
+  letter-spacing: 0.5px;
+}
+
+.buttons {
+  display: flex;
+  gap: 2px;
+}
+
+.btn {
+  width: 16px;
+  height: 14px;
+  font-size: 8px;
+  background: var(--win95-bg);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top: 1px solid var(--win95-light);
+  border-left: 1px solid var(--win95-light);
+  border-right: 1px solid var(--win95-darker);
+  border-bottom: 1px solid var(--win95-darker);
+  line-height: 1;
+  padding: 0;
+}
+
+.btn:active {
+  border-top: 1px solid var(--win95-darker);
+  border-left: 1px solid var(--win95-darker);
+  border-right: 1px solid var(--win95-light);
+  border-bottom: 1px solid var(--win95-light);
+}
+
+.close {
+  font-size: 7px;
+}

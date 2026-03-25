@@ -1,0 +1,30 @@
+.track {
+  position: relative;
+  height: 8px;
+  background: #111;
+  border-top: 1px solid #111;
+  border-left: 1px solid #111;
+  border-right: 1px solid #555;
+  border-bottom: 1px solid #555;
+  cursor: pointer;
+  margin-bottom: 4px;
+}
+
+.fill {
+  height: 100%;
+  background: var(--winamp-green);
+  transition: width 0.1s linear;
+}
+
+.thumb {
+  position: absolute;
+  top: -2px;
+  width: 6px;
+  height: 12px;
+  background: var(--win95-bg);
+  transform: translateX(-50%);
+  border-top: 1px solid var(--win95-light);
+  border-left: 1px solid var(--win95-light);
+  border-right: 1px solid var(--win95-darker);
+  border-bottom: 1px solid var(--win95-darker);
+}

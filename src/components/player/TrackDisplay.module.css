@@ -1,0 +1,60 @@
+.display {
+  background: #000;
+  border-top: 1px solid #111;
+  border-left: 1px solid #111;
+  border-right: 1px solid #555;
+  border-bottom: 1px solid #555;
+  padding: 6px;
+  margin-bottom: 4px;
+  position: relative;
+}
+
+.marqueeWrapper {
+  overflow: hidden;
+  white-space: nowrap;
+  width: 100%;
+  margin-bottom: 4px;
+}
+
+.marquee {
+  display: inline-block;
+  font-family: var(--font-retro);
+  font-size: 7px;
+  color: var(--winamp-green);
+  animation: scroll linear infinite;
+}
+
+@keyframes scroll {
+  from { transform: translateX(100%); }
+  to   { transform: translateX(-100%); }
+}
+
+.timeRow {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.time {
+  font-family: var(--font-retro);
+  font-size: 10px;
+  color: var(--winamp-green);
+  letter-spacing: 1px;
+}
+
+.timeSep {
+  color: var(--winamp-dark-green);
+  font-family: var(--font-retro);
+  font-size: 8px;
+}
+
+.artwork {
+  position: absolute;
+  right: 6px;
+  top: 6px;
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
+  image-rendering: pixelated;
+  border: 1px solid #333;
+}

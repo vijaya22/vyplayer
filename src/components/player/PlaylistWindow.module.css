@@ -1,0 +1,47 @@
+.window {
+  width: 100%;
+}
+
+.list {
+  max-height: 100px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #555 #111;
+}
+
+.item {
+  display: flex;
+  gap: 6px;
+  padding: 3px 6px;
+  cursor: pointer;
+  align-items: center;
+}
+
+.item:hover {
+  background: #1a1a2e;
+}
+
+.active {
+  background: var(--win95-blue) !important;
+}
+
+.num {
+  font-family: var(--font-retro);
+  font-size: 5px;
+  color: var(--winamp-dark-green);
+  min-width: 14px;
+}
+
+.title {
+  font-family: var(--font-retro);
+  font-size: 5px;
+  color: var(--winamp-green);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.active .title,
+.active .num {
+  color: #fff;
+}
