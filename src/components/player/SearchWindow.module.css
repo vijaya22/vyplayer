@@ -10,65 +10,71 @@
 
 .input {
   flex: 1;
-  background: #000;
-  border-top: 1px solid #111;
-  border-left: 1px solid #111;
-  border-right: 1px solid #555;
-  border-bottom: 1px solid #555;
-  color: var(--winamp-green);
-  font-family: var(--font-retro);
+  background: var(--ui-display-bg);
+  border-top:    1px solid var(--ui-border-sh);
+  border-left:   1px solid var(--ui-border-sh);
+  border-right:  1px solid var(--ui-border-hi);
+  border-bottom: 1px solid var(--ui-border-hi);
+  border-radius: calc(var(--ui-panel-radius) * 0.5);
+  color: var(--ui-text-primary);
+  font-family: var(--ui-font);
   font-size: 6px;
   padding: 4px 6px;
   outline: none;
+  transition: background 0.4s, color 0.4s;
 }
 
 .input::placeholder {
-  color: var(--winamp-dark-green);
+  color: var(--ui-text-dim);
 }
 
 .btn {
-  font-family: var(--font-retro);
+  font-family: var(--ui-font);
   font-size: 6px;
   padding: 4px 8px;
-  background: var(--win95-bg);
+  background: var(--ui-btn-bg);
+  color: var(--ui-btn-color);
   cursor: pointer;
-  border-top: 2px solid var(--win95-light);
-  border-left: 2px solid var(--win95-light);
-  border-right: 2px solid var(--win95-darker);
-  border-bottom: 2px solid var(--win95-darker);
+  border-top:    2px solid var(--ui-btn-hi);
+  border-left:   2px solid var(--ui-btn-hi);
+  border-right:  2px solid var(--ui-btn-sh);
+  border-bottom: 2px solid var(--ui-btn-sh);
+  border-radius: calc(var(--ui-panel-radius) * 0.4);
+  transition: background 0.3s, color 0.3s;
 }
 
 .btn:active {
-  border-top: 2px solid var(--win95-darker);
-  border-left: 2px solid var(--win95-darker);
-  border-right: 2px solid var(--win95-light);
-  border-bottom: 2px solid var(--win95-light);
+  border-top:    2px solid var(--ui-btn-sh);
+  border-left:   2px solid var(--ui-btn-sh);
+  border-right:  2px solid var(--ui-btn-hi);
+  border-bottom: 2px solid var(--ui-btn-hi);
 }
 
 .status {
-  font-family: var(--font-retro);
+  font-family: var(--ui-font);
   font-size: 6px;
-  color: var(--winamp-dark-green);
+  color: var(--ui-text-dim);
   padding: 4px;
 }
 
 .addAll {
-  font-family: var(--font-retro);
+  font-family: var(--ui-font);
   font-size: 6px;
-  color: var(--winamp-green);
+  color: var(--ui-accent);
   background: transparent;
   border: none;
   cursor: pointer;
   padding: 2px 0;
   margin-bottom: 2px;
   display: block;
+  transition: color 0.4s;
 }
 
 .results {
   max-height: 140px;
   overflow-y: auto;
   scrollbar-width: thin;
-  scrollbar-color: #555 #111;
+  scrollbar-color: var(--ui-border-hi) var(--ui-display-bg);
 }
 
 .result {
@@ -76,28 +82,31 @@
   flex-direction: column;
   padding: 4px 6px;
   cursor: pointer;
-  border-bottom: 1px solid #333;
+  border-bottom: 1px solid var(--ui-border-sh);
   gap: 2px;
+  transition: background 0.15s;
 }
 
 .result:hover {
-  background: var(--win95-blue);
+  background: var(--ui-btn-bg);
 }
 
 .resultTitle {
-  font-family: var(--font-retro);
+  font-family: var(--ui-font);
   font-size: 6px;
-  color: var(--winamp-green);
+  color: var(--ui-text-primary);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  transition: color 0.4s;
 }
 
 .resultArtist {
-  font-family: var(--font-retro);
+  font-family: var(--ui-font);
   font-size: 5px;
-  color: var(--winamp-dark-green);
+  color: var(--ui-text-dim);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  transition: color 0.4s;
 }

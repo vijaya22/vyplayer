@@ -16,6 +16,7 @@ export function useJamendoSearch() {
     try {
       const url = `${BASE}/tracks/?client_id=${CLIENT_ID}&format=json&limit=20&search=${encodeURIComponent(query)}&include=musicinfo&audioformat=mp32`
       const res = await fetch(url)
+      
       const data = await res.json()
       const tracks = (data.results || [])
         .filter((r) => r.audio)

@@ -1,0 +1,17 @@
+.row { display: flex; align-items: center; gap: 6px; }
+
+.label, .value {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 6px;
+  color: #00ff00;
+  min-width: 20px;
+}
+
+.value { text-align: right; }
+
+.slider {
+  flex: 1;
+  accent-color: #00ff00;
+  height: 4px;
+  cursor: pointer;
+}

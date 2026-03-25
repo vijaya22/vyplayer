@@ -1,0 +1,32 @@
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+  margin-bottom: 4px;
+}
+
+.btn {
+  flex: 1;
+  padding: 4px 2px;
+  font-family: var(--ui-font);
+  font-size: 5px;
+  background: var(--ui-display-bg);
+  color: var(--ui-text-dim);
+  border: 1px solid var(--ui-border-sh);
+  border-radius: calc(var(--ui-panel-radius) * 0.4);
+  cursor: pointer;
+  letter-spacing: 0.3px;
+  transition: color 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+
+.btn:hover {
+  color: var(--vibe-color);
+  border-color: var(--vibe-color);
+}
+
+.active {
+  color: var(--vibe-color) !important;
+  border-color: var(--vibe-color) !important;
+  background: var(--ui-btn-bg);
+  box-shadow: 0 0 8px var(--vibe-color);
+}

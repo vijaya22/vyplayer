@@ -1,25 +1,21 @@
 import { useState } from 'react'
 import { useAudioEngine } from '../../hooks/useAudioEngine'
 import { useDraggable } from '../../hooks/useDraggable'
-import TitleBar from './TitleBar'
-import TrackDisplay from './TrackDisplay'
-import Controls from './Controls'
-import SeekBar from './SeekBar'
-import VolumeSlider from './VolumeSlider'
-import VibeSelector from './VibeSelector'
-import SearchWindow from './SearchWindow'
-import PlaylistWindow from './PlaylistWindow'
-import styles from './PlayerWindow.module.css'
+import TitleBar from './ui/TitleBar'
+import TrackDisplay from './ui/TrackDisplay'
+import Controls from './ui/Controls'
+import SeekBar from './ui/SeekBar'
+import VolumeSlider from './ui/VolumeSlider'
+import SearchWindow from './ui/SearchWindow'
+import PlaylistWindow from './ui/PlaylistWindow'
+import styles from './ui/PlayerWindow.module.css'
 
-function DraggablePanel({ title, initialPos, children, style }) {
+function DraggablePanel({ title, initialPos, children }) {
   const { pos, onMouseDown, onTouchStart } = useDraggable(initialPos)
   const [minimized, setMinimized] = useState(false)
 
   return (
-    <div
-      className={styles.panel}
-      style={{ left: pos.x, top: pos.y, ...style }}
-    >
+    <div className={styles.panel} style={{ left: pos.x, top: pos.y }}>
       <TitleBar
         title={title}
         onMouseDown={onMouseDown}
@@ -32,24 +28,23 @@ function DraggablePanel({ title, initialPos, children, style }) {
   )
 }
 
-export default function PlayerWindow() {
+export default function WinampPlayerUI() {
   const { seek } = useAudioEngine()
 
   return (
     <>
       <DraggablePanel title="VYPLAYER v1.0" initialPos={{ x: 20, y: 60 }}>
-        <VibeSelector />
         <TrackDisplay />
         <SeekBar onSeek={seek} />
         <Controls />
         <VolumeSlider />
       </DraggablePanel>
 
-      <DraggablePanel title="PLAYLIST" initialPos={{ x: 20, y: 280 }}>
+      <DraggablePanel title="PLAYLIST" initialPos={{ x: 20, y: 300 }}>
         <PlaylistWindow />
       </DraggablePanel>
 
-      <DraggablePanel title="SEARCH" initialPos={{ x: 20, y: 440 }}>
+      <DraggablePanel title="SEARCH" initialPos={{ x: 20, y: 460 }}>
         <SearchWindow />
       </DraggablePanel>
     </>

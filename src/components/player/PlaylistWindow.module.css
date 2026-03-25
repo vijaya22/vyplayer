@@ -6,7 +6,7 @@
   max-height: 100px;
   overflow-y: auto;
   scrollbar-width: thin;
-  scrollbar-color: #555 #111;
+  scrollbar-color: var(--ui-border-hi) var(--ui-display-bg);
 }
 
 .item {
@@ -15,33 +15,36 @@
   padding: 3px 6px;
   cursor: pointer;
   align-items: center;
+  transition: background 0.15s;
 }
 
 .item:hover {
-  background: #1a1a2e;
+  background: var(--ui-btn-bg);
 }
 
 .active {
-  background: var(--win95-blue) !important;
+  background: var(--ui-btn-bg) !important;
+  border-left: 2px solid var(--ui-accent);
 }
 
 .num {
-  font-family: var(--font-retro);
+  font-family: var(--ui-font);
   font-size: 5px;
-  color: var(--winamp-dark-green);
+  color: var(--ui-text-dim);
   min-width: 14px;
+  transition: color 0.4s;
 }
 
 .title {
-  font-family: var(--font-retro);
+  font-family: var(--ui-font);
   font-size: 5px;
-  color: var(--winamp-green);
+  color: var(--ui-text-primary);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  transition: color 0.4s;
 }
 
-.active .title,
-.active .num {
-  color: #fff;
+.active .title {
+  color: var(--ui-accent);
 }

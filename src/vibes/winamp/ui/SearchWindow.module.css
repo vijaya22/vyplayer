@@ -1,0 +1,89 @@
+.window { width: 100%; }
+
+.form { display: flex; gap: 3px; margin-bottom: 4px; }
+
+.input {
+  flex: 1;
+  background: #000;
+  border-top:    1px solid #111;
+  border-left:   1px solid #111;
+  border-right:  1px solid #555;
+  border-bottom: 1px solid #555;
+  color: #00ff00;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 6px;
+  padding: 4px 6px;
+  outline: none;
+}
+
+.input::placeholder { color: #008000; }
+
+.btn {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 6px;
+  padding: 4px 8px;
+  background: #c0c0c0;
+  color: #000;
+  cursor: pointer;
+  border-top:    2px solid #fff;
+  border-left:   2px solid #fff;
+  border-right:  2px solid #404040;
+  border-bottom: 2px solid #404040;
+}
+
+.btn:active {
+  border-top:    2px solid #404040;
+  border-left:   2px solid #404040;
+  border-right:  2px solid #fff;
+  border-bottom: 2px solid #fff;
+}
+
+.status { font-family: 'Press Start 2P', monospace; font-size: 6px; color: #008000; padding: 4px; }
+
+.addAll {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 6px;
+  color: #00ff00;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 2px 0;
+  margin-bottom: 2px;
+  display: block;
+}
+
+.results {
+  max-height: 140px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #555 #000;
+}
+
+.result {
+  display: flex;
+  flex-direction: column;
+  padding: 4px 6px;
+  cursor: pointer;
+  border-bottom: 1px solid #333;
+  gap: 2px;
+}
+
+.result:hover { background: #000080; }
+
+.resultTitle {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 6px;
+  color: #00ff00;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.resultArtist {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 5px;
+  color: #008000;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

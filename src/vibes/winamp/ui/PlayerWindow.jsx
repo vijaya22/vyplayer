@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { useAudioEngine } from '../../hooks/useAudioEngine'
-import { useDraggable } from '../../hooks/useDraggable'
+import { useAudioEngine } from '../../../hooks/useAudioEngine'
+import { useDraggable } from '../../../hooks/useDraggable'
 import TitleBar from './TitleBar'
 import TrackDisplay from './TrackDisplay'
 import Controls from './Controls'

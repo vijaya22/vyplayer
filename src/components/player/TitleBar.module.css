@@ -1,14 +1,16 @@
 .bar {
-  background: linear-gradient(to right, var(--win95-blue), var(--win95-blue-light));
+  background: linear-gradient(to right, var(--ui-titlebar-from), var(--ui-titlebar-to));
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 2px 4px;
   margin-bottom: 4px;
+  border-radius: calc(var(--ui-panel-radius) - 2px) calc(var(--ui-panel-radius) - 2px) 0 0;
+  transition: background 0.4s;
 }
 
 .title {
-  font-family: var(--font-retro);
+  font-family: var(--ui-font);
   font-size: 7px;
   color: #fff;
   letter-spacing: 0.5px;
@@ -23,27 +25,25 @@
   width: 16px;
   height: 14px;
   font-size: 8px;
-  background: var(--win95-bg);
+  background: var(--ui-btn-bg);
+  color: var(--ui-btn-color);
   border: none;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-top: 1px solid var(--win95-light);
-  border-left: 1px solid var(--win95-light);
-  border-right: 1px solid var(--win95-darker);
-  border-bottom: 1px solid var(--win95-darker);
+  border-top:    1px solid var(--ui-btn-hi);
+  border-left:   1px solid var(--ui-btn-hi);
+  border-right:  1px solid var(--ui-btn-sh);
+  border-bottom: 1px solid var(--ui-btn-sh);
   line-height: 1;
   padding: 0;
+  transition: background 0.3s, color 0.3s;
 }
 
 .btn:active {
-  border-top: 1px solid var(--win95-darker);
-  border-left: 1px solid var(--win95-darker);
-  border-right: 1px solid var(--win95-light);
-  border-bottom: 1px solid var(--win95-light);
-}
-
-.close {
-  font-size: 7px;
+  border-top:    1px solid var(--ui-btn-sh);
+  border-left:   1px solid var(--ui-btn-sh);
+  border-right:  1px solid var(--ui-btn-hi);
+  border-bottom: 1px solid var(--ui-btn-hi);
 }

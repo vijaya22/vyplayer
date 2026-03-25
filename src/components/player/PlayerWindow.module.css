@@ -2,11 +2,15 @@
   position: fixed;
   z-index: 10;
   width: min(300px, 90vw);
-  background: var(--winamp-bg);
-  border-top: 2px solid #555;
-  border-left: 2px solid #555;
-  border-right: 2px solid #111;
-  border-bottom: 2px solid #111;
+  background: var(--ui-panel-bg);
+  border-top:    var(--ui-border-w) solid var(--ui-border-hi);
+  border-left:   var(--ui-border-w) solid var(--ui-border-hi);
+  border-right:  var(--ui-border-w) solid var(--ui-border-sh);
+  border-bottom: var(--ui-border-w) solid var(--ui-border-sh);
+  border-radius: var(--ui-panel-radius);
+  backdrop-filter: var(--ui-panel-blur);
+  -webkit-backdrop-filter: var(--ui-panel-blur);
   padding: 4px;
   user-select: none;
+  transition: background 0.4s, border-color 0.4s, border-radius 0.4s;
 }

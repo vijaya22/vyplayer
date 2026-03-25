@@ -1,19 +1,22 @@
 .track {
   position: relative;
   height: 8px;
-  background: #111;
-  border-top: 1px solid #111;
-  border-left: 1px solid #111;
-  border-right: 1px solid #555;
-  border-bottom: 1px solid #555;
+  background: var(--ui-display-bg);
+  border-top:    1px solid var(--ui-border-sh);
+  border-left:   1px solid var(--ui-border-sh);
+  border-right:  1px solid var(--ui-border-hi);
+  border-bottom: 1px solid var(--ui-border-hi);
+  border-radius: 4px;
   cursor: pointer;
   margin-bottom: 4px;
+  overflow: hidden;
 }
 
 .fill {
   height: 100%;
-  background: var(--winamp-green);
-  transition: width 0.1s linear;
+  background: var(--ui-accent);
+  transition: width 0.1s linear, background 0.4s;
+  opacity: 0.8;
 }
 
 .thumb {
@@ -21,10 +24,11 @@
   top: -2px;
   width: 6px;
   height: 12px;
-  background: var(--win95-bg);
+  background: var(--ui-btn-bg);
   transform: translateX(-50%);
-  border-top: 1px solid var(--win95-light);
-  border-left: 1px solid var(--win95-light);
-  border-right: 1px solid var(--win95-darker);
-  border-bottom: 1px solid var(--win95-darker);
+  border-top:    1px solid var(--ui-btn-hi);
+  border-left:   1px solid var(--ui-btn-hi);
+  border-right:  1px solid var(--ui-btn-sh);
+  border-bottom: 1px solid var(--ui-btn-sh);
+  border-radius: 2px;
 }

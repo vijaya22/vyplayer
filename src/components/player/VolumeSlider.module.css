@@ -4,24 +4,22 @@
   gap: 6px;
 }
 
-.label {
-  font-family: var(--font-retro);
+.label, .value {
+  font-family: var(--ui-font);
   font-size: 6px;
-  color: var(--winamp-green);
+  color: var(--ui-text-primary);
   min-width: 20px;
+  transition: color 0.4s;
 }
 
 .value {
-  font-family: var(--font-retro);
-  font-size: 6px;
-  color: var(--winamp-green);
-  min-width: 20px;
   text-align: right;
 }
 
 .slider {
   flex: 1;
-  accent-color: var(--winamp-green);
+  accent-color: var(--ui-accent);
   height: 4px;
   cursor: pointer;
+  transition: accent-color 0.4s;
 }

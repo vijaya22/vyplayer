@@ -1,6 +1,11 @@
 import { create } from 'zustand'
+import { DEFAULT_VIBE } from '../vibes'
 
 export const usePlayerStore = create((set) => ({
+  // Vibe
+  vibe: DEFAULT_VIBE,
+  setVibe: (vibe) => set({ vibe }),
+
   // Playback state
   isPlaying: false,
   currentTrack: null,

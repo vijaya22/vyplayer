@@ -1,0 +1,31 @@
+.track {
+  position: relative;
+  height: 8px;
+  background: #000;
+  border-top:    1px solid #111;
+  border-left:   1px solid #111;
+  border-right:  1px solid #555;
+  border-bottom: 1px solid #555;
+  cursor: pointer;
+  margin-bottom: 4px;
+  overflow: hidden;
+}
+
+.fill {
+  height: 100%;
+  background: #00ff00;
+  transition: width 0.1s linear;
+}
+
+.thumb {
+  position: absolute;
+  top: -2px;
+  width: 6px;
+  height: 12px;
+  background: #c0c0c0;
+  transform: translateX(-50%);
+  border-top:    1px solid #fff;
+  border-left:   1px solid #fff;
+  border-right:  1px solid #404040;
+  border-bottom: 1px solid #404040;
+}

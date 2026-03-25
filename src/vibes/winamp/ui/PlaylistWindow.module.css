@@ -1,0 +1,31 @@
+.window { width: 100%; }
+
+.list {
+  max-height: 100px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #555 #000;
+}
+
+.item { display: flex; gap: 6px; padding: 3px 6px; cursor: pointer; align-items: center; }
+.item:hover { background: #1a1a2e; }
+
+.active { background: #000080 !important; }
+
+.num {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 5px;
+  color: #008000;
+  min-width: 14px;
+}
+
+.title {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 5px;
+  color: #00ff00;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.active .title { color: #fff; }

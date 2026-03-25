@@ -1,12 +1,14 @@
 .display {
-  background: #000;
-  border-top: 1px solid #111;
-  border-left: 1px solid #111;
-  border-right: 1px solid #555;
-  border-bottom: 1px solid #555;
+  background: var(--ui-display-bg);
+  border-top:    1px solid var(--ui-border-sh);
+  border-left:   1px solid var(--ui-border-sh);
+  border-right:  1px solid var(--ui-border-hi);
+  border-bottom: 1px solid var(--ui-border-hi);
+  border-radius: calc(var(--ui-panel-radius) * 0.5);
   padding: 6px;
   margin-bottom: 4px;
   position: relative;
+  transition: background 0.4s;
 }
 
 .marqueeWrapper {
@@ -18,10 +20,11 @@
 
 .marquee {
   display: inline-block;
-  font-family: var(--font-retro);
+  font-family: var(--ui-font);
   font-size: 7px;
-  color: var(--winamp-green);
+  color: var(--ui-text-primary);
   animation: scroll linear infinite;
+  transition: color 0.4s;
 }
 
 @keyframes scroll {
@@ -36,16 +39,18 @@
 }
 
 .time {
-  font-family: var(--font-retro);
+  font-family: var(--ui-font);
   font-size: 10px;
-  color: var(--winamp-green);
+  color: var(--ui-text-primary);
   letter-spacing: 1px;
+  transition: color 0.4s;
 }
 
 .timeSep {
-  color: var(--winamp-dark-green);
-  font-family: var(--font-retro);
+  color: var(--ui-text-dim);
+  font-family: var(--ui-font);
   font-size: 8px;
+  transition: color 0.4s;
 }
 
 .artwork {
@@ -55,6 +60,6 @@
   width: 48px;
   height: 48px;
   object-fit: cover;
-  image-rendering: pixelated;
-  border: 1px solid #333;
+  border: 1px solid var(--ui-border-hi);
+  border-radius: calc(var(--ui-panel-radius) * 0.5);
 }
