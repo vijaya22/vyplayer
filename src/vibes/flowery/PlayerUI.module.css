@@ -7,10 +7,12 @@
   transform: translateX(-50%);
   z-index: 10;
   width: min(340px, 92vw);
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  align-items: center;
+}
+
+@media (pointer: fine) {
+  .wrapper {
+    bottom: auto;
+  }
 }
 
 .card {
@@ -187,7 +189,137 @@
   cursor: pointer;
 }
 
-/* Vibe selector */
+/* Drag handle */
+.dragHandle {
+  display: none;
+  justify-content: center;
+  padding: 4px 0 0;
+  cursor: grab;
+}
+
+@media (pointer: fine) {
+  .dragHandle { display: flex; }
+}
+
+.dragDots {
+  font-size: 10px;
+  color: rgba(255, 150, 180, 0.25);
+  letter-spacing: 3px;
+}
+
+/* Tabs */
+.tabBar {
+  display: flex;
+  width: 100%;
+  gap: 4px;
+  margin-bottom: 12px;
+}
+
+.tabBtn {
+  flex: 1;
+  padding: 6px;
+  font-family: 'Lato', sans-serif;
+  font-size: 9px;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(255, 150, 180, 0.12);
+  color: rgba(255, 180, 200, 0.35);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.tabActive {
+  color: #ff88bb;
+  border-bottom: 2px solid #ff88bb;
+}
+
+/* List (playlist + search results) */
+.listContent {
+  width: 100%;
+  max-height: 160px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,150,180,0.2) transparent;
+}
+
+.listItem {
+  padding: 8px 4px;
+  border-bottom: 1px solid rgba(255, 150, 180, 0.08);
+  cursor: pointer;
+  transition: background 0.15s;
+  border-radius: 6px;
+}
+
+.listItem:hover { background: rgba(255, 120, 160, 0.1); }
+
+.listItemActive { background: rgba(255, 120, 160, 0.15); }
+
+.listTitle {
+  font-family: 'Playfair Display', serif;
+  font-size: 11px;
+  color: #ffd6e7;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.listArtist {
+  font-family: 'Lato', sans-serif;
+  font-size: 9px;
+  color: rgba(255, 180, 200, 0.45);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.emptyMsg {
+  font-family: 'Lato', sans-serif;
+  font-size: 11px;
+  color: rgba(255, 180, 200, 0.35);
+  text-align: center;
+  padding: 20px 0;
+}
+
+/* Search */
+.searchContent { width: 100%; }
+
+.searchForm {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.searchInput {
+  flex: 1;
+  background: rgba(255, 150, 180, 0.07);
+  border: 1px solid rgba(255, 150, 180, 0.2);
+  border-radius: 20px;
+  padding: 6px 12px;
+  color: #ffd6e7;
+  font-family: 'Lato', sans-serif;
+  font-size: 11px;
+  outline: none;
+}
+
+.searchInput::placeholder { color: rgba(255, 180, 200, 0.3); }
+
+.searchBtn {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 150, 180, 0.3);
+  background: rgba(255, 120, 160, 0.1);
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Vibe selector (unused now, kept for reference) */
 .vibeRow {
   width: 100%;
   display: flex;

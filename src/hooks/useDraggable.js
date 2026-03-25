@@ -1,11 +1,16 @@
 import { useRef, useState, useCallback } from 'react'
 
+function isMobile() {
+  return window.matchMedia('(pointer: coarse)').matches
+}
+
 export function useDraggable(initialPos) {
   const [pos, setPos] = useState(initialPos)
   const dragging = useRef(false)
   const offset = useRef({ x: 0, y: 0 })
 
   const onMouseDown = useCallback((e) => {
+    if (isMobile()) return
     dragging.current = true
     offset.current = { x: e.clientX - pos.x, y: e.clientY - pos.y }
 
@@ -24,26 +29,11 @@ export function useDraggable(initialPos) {
     window.addEventListener('mouseup', onUp)
   }, [pos])
 
-  const onTouchStart = useCallback((e) => {
-    const touch = e.touches[0]
-    dragging.current = true
-    offset.current = { x: touch.clientX - pos.x, y: touch.clientY - pos.y }
+  // Touch drag disabled on mobile — touch is for interacting with the UI, not dragging
+  const onTouchStart = useCallback(() => {}, [])
 
-    function onMove(e) {
-      if (!dragging.current) return
-      const t = e.touches[0]
-      setPos({ x: t.clientX - offset.current.x, y: t.clientY - offset.current.y })
-    }
+  // On mobile, return a centered fixed position instead of the draggable pos
+  const effectivePos = isMobile() ? null : pos
 
-    function onEnd() {
-      dragging.current = false
-      window.removeEventListener('touchmove', onMove)
-      window.removeEventListener('touchend', onEnd)
-    }
-
-    window.addEventListener('touchmove', onMove, { passive: false })
-    window.addEventListener('touchend', onEnd)
-  }, [pos])
-
-  return { pos, onMouseDown, onTouchStart }
+  return { pos: effectivePos, onMouseDown, onTouchStart }
 }

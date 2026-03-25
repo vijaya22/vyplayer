@@ -1,12 +1,47 @@
 .panel {
   position: fixed;
   z-index: 10;
-  width: min(300px, 90vw);
+  width: min(420px, 92vw);
   background: #232323;
   border-top:    2px solid #555;
   border-left:   2px solid #555;
   border-right:  2px solid #111;
   border-bottom: 2px solid #111;
-  padding: 4px;
+  padding: 8px;
   user-select: none;
+}
+
+.tabBar {
+  display: flex;
+  gap: 2px;
+  margin-top: 4px;
+  margin-bottom: 0;
+  border-bottom: 1px solid #111;
+}
+
+.tabBtn {
+  flex: 1;
+  padding: 6px;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 7px;
+  background: #1a1a1a;
+  color: #555;
+  border: none;
+  border-top:   1px solid #333;
+  border-left:  1px solid #333;
+  border-right: 1px solid #111;
+  cursor: pointer;
+}
+
+.tabBtn:hover { color: #00aa00; }
+
+.tabActive {
+  background: #232323;
+  color: #00ff00;
+  border-bottom: 2px solid #232323;
+  margin-bottom: -1px;
+}
+
+.tabContent {
+  min-height: 120px;
 }

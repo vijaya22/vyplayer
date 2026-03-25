@@ -19,7 +19,7 @@
 .marquee {
   display: inline-block;
   font-family: 'Press Start 2P', monospace;
-  font-size: 7px;
+  font-size: 9px;
   color: #00ff00;
   animation: scroll linear infinite;
 }
@@ -33,7 +33,7 @@
 
 .time {
   font-family: 'Press Start 2P', monospace;
-  font-size: 10px;
+  font-size: 14px;
   color: #00ff00;
   letter-spacing: 1px;
 }
@@ -48,8 +48,8 @@
   position: absolute;
   right: 6px;
   top: 6px;
-  width: 48px;
-  height: 48px;
+  width: 64px;
+  height: 64px;
   object-fit: cover;
   image-rendering: pixelated;
   border: 1px solid #333;

@@ -14,14 +14,14 @@
 
 .num {
   font-family: 'Press Start 2P', monospace;
-  font-size: 5px;
+  font-size: 7px;
   color: #008000;
   min-width: 14px;
 }
 
 .title {
   font-family: 'Press Start 2P', monospace;
-  font-size: 5px;
+  font-size: 7px;
   color: #00ff00;
   white-space: nowrap;
   overflow: hidden;

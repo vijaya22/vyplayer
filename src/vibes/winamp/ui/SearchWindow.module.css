@@ -11,8 +11,8 @@
   border-bottom: 1px solid #555;
   color: #00ff00;
   font-family: 'Press Start 2P', monospace;
-  font-size: 6px;
-  padding: 4px 6px;
+  font-size: 8px;
+  padding: 8px 10px;
   outline: none;
 }
 
@@ -20,8 +20,8 @@
 
 .btn {
   font-family: 'Press Start 2P', monospace;
-  font-size: 6px;
-  padding: 4px 8px;
+  font-size: 8px;
+  padding: 8px 12px;
   background: #c0c0c0;
   color: #000;
   cursor: pointer;
@@ -72,7 +72,7 @@
 
 .resultTitle {
   font-family: 'Press Start 2P', monospace;
-  font-size: 6px;
+  font-size: 8px;
   color: #00ff00;
   white-space: nowrap;
   overflow: hidden;
@@ -81,7 +81,7 @@
 
 .resultArtist {
   font-family: 'Press Start 2P', monospace;
-  font-size: 5px;
+  font-size: 7px;
   color: #008000;
   white-space: nowrap;
   overflow: hidden;
