@@ -2,6 +2,14 @@ import { lazy } from 'react'
 
 export const VIBES = [
   {
+    id: 'wmp',
+    label: '2000s',
+    icon: '💿',
+    color: '#0078d4',
+    Scene:    lazy(() => import('./wmp/Scene')),
+    PlayerUI: lazy(() => import('./wmp/PlayerUI')),
+  },
+  {
     id: 'winamp',
     label: '90s',
     icon: '🖥️',

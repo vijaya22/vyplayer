@@ -1,0 +1,518 @@
+@import url('https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;600&display=swap');
+
+* { box-sizing: border-box; }
+
+.panel {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  background: rgba(8, 12, 20, 0.96);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-top: 1px solid rgba(60, 100, 180, 0.3);
+  font-family: 'Segoe UI', 'Tahoma', sans-serif;
+  color: #e0e8f8;
+}
+
+@media (pointer: fine) {
+  .panel {
+    bottom: auto;
+    left: auto;
+    right: auto;
+    width: min(520px, 92vw);
+    border: 1px solid rgba(60, 100, 180, 0.25);
+    border-radius: 6px;
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.85), 0 0 0 1px rgba(255,255,255,0.03) inset;
+  }
+}
+
+/* ── Title bar ── */
+.titleBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 7px 10px 6px;
+  cursor: grab;
+  background: linear-gradient(180deg, rgba(20,35,70,0.8) 0%, rgba(8,12,20,0) 100%);
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  user-select: none;
+}
+
+.logoRow {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  min-width: 0;
+}
+
+/* WMP 12 sun logo */
+.wmpLogo {
+  width: 20px;
+  height: 20px;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.wmpCore {
+  position: absolute;
+  inset: 5px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 38% 32%, #ffe580, #ff8800 50%, #cc3300);
+  box-shadow: 0 0 6px #ff880099;
+  z-index: 1;
+}
+
+.wmpRay {
+  position: absolute;
+  width: 2px;
+  border-radius: 1px;
+  background: linear-gradient(to top, #ff8800bb, transparent);
+  left: calc(50% - 1px);
+  bottom: 50%;
+  transform-origin: bottom center;
+}
+
+.titleText {
+  font-size: 11px;
+  font-weight: 400;
+  color: rgba(180, 200, 240, 0.7);
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.minimizeBtn {
+  background: transparent;
+  border: none;
+  color: rgba(180,200,240,0.3);
+  cursor: pointer;
+  font-size: 13px;
+  padding: 2px 6px;
+  border-radius: 3px;
+  transition: all 0.15s;
+  flex-shrink: 0;
+}
+.minimizeBtn:hover { color: #fff; background: rgba(255,255,255,0.07); }
+
+/* ── Now playing area (album art + track info) ── */
+.nowPlaying {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+
+.artwork {
+  width: 52px;
+  height: 52px;
+  border-radius: 2px;
+  object-fit: cover;
+  flex-shrink: 0;
+  border: 1px solid rgba(255,255,255,0.1);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.6);
+}
+
+.artworkPlaceholder {
+  width: 52px;
+  height: 52px;
+  border-radius: 2px;
+  /* WMP 12 default album art: dark blue with music note */
+  background: linear-gradient(160deg, #0d2040 0%, #071428 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  flex-shrink: 0;
+  border: 1px solid rgba(60,100,180,0.25);
+  color: rgba(140,180,230,0.5);
+}
+
+.trackInfo { flex: 1; min-width: 0; }
+
+.trackTitle {
+  font-size: 13px;
+  font-weight: 600;
+  color: #e8f0ff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.trackArtist {
+  font-size: 11px;
+  color: rgba(150, 180, 225, 0.5);
+  margin-top: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ── Controls strip (matches the WMP 12 bottom bar) ── */
+.controlStrip {
+  background: #0c0f18;
+  border-top: 1px solid rgba(40, 80, 160, 0.3);
+}
+
+/* ── Seek / timeline ── */
+/* Outer track — sits at top of control strip, full width */
+.seekBar {
+  width: 100%;
+  height: 18px;
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+}
+
+/* The actual visible track line */
+.seekTrack {
+  flex: 1;
+  height: 3px;
+  background: rgba(255,255,255,0.12);
+  border-radius: 2px;
+  position: relative;
+  overflow: visible;
+}
+.seekBar:hover .seekTrack { background: rgba(255,255,255,0.18); }
+
+.seekFill {
+  height: 100%;
+  background: #2878d8;
+  border-radius: 2px;
+  transition: width 0.1s linear;
+}
+
+/* Thin vertical bar thumb, appears on hover */
+.seekThumb {
+  position: absolute;
+  top: 50%;
+  width: 3px;
+  height: 12px;
+  background: #8ec8ff;
+  border-radius: 2px;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.15s, left 0.1s linear;
+  box-shadow: 0 0 4px rgba(142,200,255,0.7);
+}
+.seekBar:hover .seekThumb { opacity: 1; }
+
+/* Time labels flanking the seek track */
+.seekTime {
+  font-size: 10px;
+  color: rgba(140,170,220,0.5);
+  font-variant-numeric: tabular-nums;
+  flex-shrink: 0;
+  width: 30px;
+}
+.seekTime:first-child { text-align: right; margin-right: 6px; }
+.seekTime:last-child  { margin-left: 6px; }
+
+/* Row of controls */
+.controls {
+  display: flex;
+  align-items: center;
+  padding: 4px 12px 8px;
+  gap: 4px;
+}
+
+/* Time display (current position, left of btn group) */
+.timeText {
+  font-size: 10px;
+  color: rgba(140,170,220,0.5);
+  min-width: 30px;
+  font-variant-numeric: tabular-nums;
+  margin-right: 2px;
+}
+
+/* ── Button group — dark rounded container behind all transport buttons ── */
+.btnGroup {
+  display: flex;
+  align-items: center;
+  gap: 1px;
+  background: #1a1d28;
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 6px;
+  padding: 3px 5px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.5) inset, 0 1px 0 rgba(255,255,255,0.04);
+}
+
+/* Flat icon buttons inside the group */
+.ctrlBtn {
+  width: 26px;
+  height: 26px;
+  background: transparent;
+  border: none;
+  border-radius: 3px;
+  color: rgba(150, 185, 230, 0.5);
+  font-size: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.1s, background 0.1s;
+  flex-shrink: 0;
+}
+.ctrlBtn:hover {
+  color: rgba(210, 230, 255, 0.9);
+  background: rgba(255,255,255,0.07);
+}
+
+/* Active state for shuffle / repeat */
+.ctrlBtnActive { color: #4eb0ff !important; }
+.ctrlBtnActive:hover { color: #80c8ff !important; }
+
+/* Skip buttons — slightly wider but same flat style */
+.skipBtn {
+  width: 30px;
+  height: 26px;
+  background: transparent;
+  border: none;
+  color: rgba(170, 200, 245, 0.6);
+  font-size: 13px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 3px;
+  transition: color 0.1s, background 0.1s;
+  flex-shrink: 0;
+}
+.skipBtn:hover {
+  color: rgba(220, 235, 255, 0.95);
+  background: rgba(255,255,255,0.07);
+}
+.skipBtn:active { opacity: 0.65; }
+
+/* ── THE PLAY BUTTON — WMP 12 glass blue sphere ── */
+.playBtn {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  cursor: pointer;
+  border: 1px solid rgba(100, 170, 255, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: #fff;
+  margin: 0 5px;
+  transition: all 0.15s;
+  padding-left: 2px; /* optical center for ▶ */
+
+  /* Glass sphere: radial base + specular highlight ellipse */
+  background:
+    radial-gradient(ellipse 55% 45% at 38% 28%, rgba(255,255,255,0.55) 0%, rgba(200,230,255,0.10) 55%, transparent 70%),
+    radial-gradient(circle at 50% 65%, rgba(0,30,100,0.9) 0%, rgba(10,60,180,0.92) 45%, rgba(20,90,210,0.88) 100%);
+
+  box-shadow:
+    /* outer rim highlight */
+    0 0 0 1px rgba(180,220,255,0.15),
+    /* inner top highlight arc */
+    0 2px 0 rgba(255,255,255,0.18) inset,
+    /* inner bottom shadow */
+    0 -3px 6px rgba(0,0,10,0.5) inset,
+    /* outer glow */
+    0 4px 18px rgba(20,100,255,0.55),
+    0 0 30px rgba(40,120,255,0.20);
+}
+.playBtn:hover {
+  background:
+    radial-gradient(ellipse 55% 45% at 38% 28%, rgba(255,255,255,0.65) 0%, rgba(220,240,255,0.15) 55%, transparent 70%),
+    radial-gradient(circle at 50% 65%, rgba(0,40,120,0.9) 0%, rgba(20,80,210,0.94) 45%, rgba(40,110,240,0.90) 100%);
+  box-shadow:
+    0 0 0 1px rgba(200,230,255,0.25),
+    0 2px 0 rgba(255,255,255,0.25) inset,
+    0 -3px 6px rgba(0,0,10,0.5) inset,
+    0 4px 24px rgba(30,120,255,0.75),
+    0 0 40px rgba(60,150,255,0.35);
+  border-color: rgba(140,200,255,0.65);
+}
+.playBtn:active { transform: scale(0.92); }
+
+/* Volume */
+.volArea {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: auto;
+}
+
+.volIcon {
+  font-size: 14px;
+  color: rgba(150,185,230,0.5);
+  cursor: default;
+}
+
+.volSlider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 80px;
+  height: 3px;
+  border-radius: 2px;
+  background: rgba(255,255,255,0.15);
+  outline: none;
+  cursor: pointer;
+}
+.volSlider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #5ab4ff;
+  cursor: pointer;
+  border: 1px solid rgba(140,200,255,0.5);
+  box-shadow: 0 0 5px rgba(80,180,255,0.55);
+  margin-top: -4px;
+}
+.volSlider::-moz-range-thumb {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #5ab4ff;
+  cursor: pointer;
+  border: 1px solid rgba(140,200,255,0.5);
+  box-shadow: 0 0 5px rgba(80,180,255,0.55);
+}
+.volSlider::-webkit-slider-runnable-track {
+  height: 3px;
+  border-radius: 2px;
+  background: rgba(255,255,255,0.15);
+}
+.volSlider::-moz-range-track {
+  height: 3px;
+  border-radius: 2px;
+  background: rgba(255,255,255,0.15);
+}
+.volSlider::-moz-range-progress {
+  height: 3px;
+  border-radius: 2px;
+  background: #2878d8;
+}
+
+/* ── Tabs ── */
+.tabBar {
+  display: flex;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+
+.tabBtn {
+  flex: 1;
+  padding: 7px 4px;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 10px;
+  background: transparent;
+  color: rgba(150,180,230,0.38);
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  letter-spacing: 0.3px;
+  transition: all 0.15s;
+}
+.tabBtn:hover {
+  color: rgba(160,185,230,0.72);
+  background: rgba(255,255,255,0.03);
+}
+.tabActive {
+  color: #4eb0ff !important;
+  border-bottom-color: #2060c0 !important;
+  background: rgba(30,80,180,0.08) !important;
+}
+
+/* ── Tab content ── */
+.tabContent {
+  max-height: 160px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(60,120,220,0.3) transparent;
+}
+
+.listItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 12px;
+  cursor: pointer;
+  border-bottom: 1px solid rgba(255,255,255,0.025);
+  transition: background 0.1s;
+}
+.listItem:hover { background: rgba(30,80,180,0.12); }
+.listItemActive { background: rgba(30,80,180,0.22) !important; }
+
+.listNum {
+  font-size: 9px;
+  color: rgba(150,180,230,0.25);
+  min-width: 16px;
+  text-align: right;
+}
+
+.listInfo { flex: 1; min-width: 0; }
+
+.listTitle {
+  font-size: 11px;
+  color: #c8d8f0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.listArtist {
+  font-size: 9px;
+  color: rgba(150,180,225,0.38);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.emptyMsg {
+  font-size: 11px;
+  color: rgba(150,180,230,0.2);
+  text-align: center;
+  padding: 24px;
+  font-style: italic;
+}
+
+/* ── Search ── */
+.searchForm {
+  display: flex;
+  gap: 6px;
+  padding: 8px 10px;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+
+.searchInput {
+  flex: 1;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 3px;
+  color: #e0e8f8;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 11px;
+  padding: 5px 10px;
+  outline: none;
+  transition: border-color 0.15s;
+}
+.searchInput:focus { border-color: #2060c0; }
+.searchInput::placeholder { color: rgba(150,180,230,0.2); }
+
+.searchBtn {
+  padding: 5px 14px;
+  background: rgba(30,80,180,0.2);
+  border: 1px solid rgba(40,100,200,0.3);
+  border-radius: 3px;
+  color: #4eb0ff;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 11px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.searchBtn:hover {
+  background: rgba(30,80,180,0.35);
+  color: #fff;
+}
