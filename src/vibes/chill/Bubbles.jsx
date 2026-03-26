@@ -30,8 +30,8 @@ export default function Bubbles() {
     const speed = 1 + amplitude * 2
 
     for (let i = 0; i < COUNT; i++) {
-      pos[i * 3 + 1] += delta * vel[i] * speed
-      pos[i * 3]     += Math.sin(t * 0.4 + off[i]) * delta * 0.08
+      pos[i * 3 + 1] += delta * velocities[i] * speed
+      pos[i * 3]     += Math.sin(t * 0.4 + offsets[i]) * delta * 0.08
 
       if (pos[i * 3 + 1] > 4.5) {
         pos[i * 3 + 1] = -4.5
