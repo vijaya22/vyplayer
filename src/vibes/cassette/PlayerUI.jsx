@@ -115,7 +115,7 @@ export default function CassettePlayerUI() {
   const [minimized, setMinimized] = useState(false)
   const [shuffle, setShuffle] = useState(false)
   const [repeat, setRepeat] = useState(false)
-  const { pos, onMouseDown } = useDraggable({ x: 20, y: 60 })
+  const { pos, onMouseDown } = useDraggable({ x: 20, y: 72 })
 
   const { isPlaying, setPlaying, prevTrack, nextTrack, currentTrack,
           volume, setVolume, progress, duration, playlist, currentIndex,

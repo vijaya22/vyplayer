@@ -37,7 +37,7 @@ export default function PlayerWindow() {
 
   return (
     <>
-      <DraggablePanel title="VYPLAYER v1.0" initialPos={{ x: 20, y: 60 }}>
+      <DraggablePanel title="VYPLAYER v1.0" initialPos={{ x: 20, y: 72 }}>
         <VibeSelector />
         <TrackDisplay />
         <SeekBar onSeek={seek} />

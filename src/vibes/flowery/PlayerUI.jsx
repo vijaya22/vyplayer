@@ -16,7 +16,7 @@ const TABS = ['PLAYER', 'PLAYLIST', 'SEARCH']
 export default function FloweryPlayerUI() {
   const seek = usePlayerStore((s) => s.seek)
   const [tab, setTab] = useState('PLAYER')
-  const { pos, onMouseDown } = useDraggable({ x: 20, y: 60 })
+  const { pos, onMouseDown } = useDraggable({ x: 20, y: 72 })
   const { isPlaying, setPlaying, prevTrack, nextTrack, currentTrack, volume, setVolume, playlist, currentIndex, setTrack, setPlaying: play } = usePlayerStore()
 
   const posStyle = pos

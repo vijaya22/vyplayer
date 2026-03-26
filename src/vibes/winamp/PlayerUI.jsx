@@ -16,7 +16,7 @@ export default function WinampPlayerUI() {
   const seek = usePlayerStore((s) => s.seek)
   const [tab, setTab] = useState('PLAYLIST')
   const [minimized, setMinimized] = useState(false)
-  const { pos, onMouseDown, onTouchStart } = useDraggable({ x: 20, y: 60 })
+  const { pos, onMouseDown, onTouchStart } = useDraggable({ x: 20, y: 72 })
 
   // pos === null means mobile: use centered fixed position
   const posStyle = pos
