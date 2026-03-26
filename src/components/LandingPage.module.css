@@ -1,0 +1,172 @@
+.page {
+  min-height: 100vh;
+  background: #080808;
+  color: #fff;
+  font-family: system-ui, -apple-system, sans-serif;
+  overflow-y: auto;
+}
+
+/* ── Hero ── */
+.hero {
+  text-align: center;
+  padding: 96px 24px 64px;
+  position: relative;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(120, 80, 255, 0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.title {
+  font-size: clamp(3.5rem, 12vw, 9rem);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  margin: 0;
+  background: linear-gradient(135deg, #ffffff 0%, #aaaaaa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+}
+
+.titleAccent {
+  background: linear-gradient(135deg, #a070ff 0%, #ff60c0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.tagline {
+  margin: 20px 0 0;
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  color: #555;
+  letter-spacing: 0.04em;
+}
+
+.heroSub {
+  margin: 36px 0 0;
+  font-size: 0.9rem;
+  color: #333;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+}
+
+/* ── Grid ── */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
+  padding: 0 32px 100px;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+/* ── Card ── */
+.card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 18px;
+  padding: 32px 24px 28px;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
+  overflow: hidden;
+  text-align: left;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--c);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.06);
+  border-color: var(--c);
+  box-shadow: 0 12px 40px color-mix(in srgb, var(--c) 25%, transparent);
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+.card:active {
+  transform: translateY(-2px);
+}
+
+.cardGlow {
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: var(--c);
+  opacity: 0;
+  filter: blur(40px);
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.card:hover .cardGlow {
+  opacity: 0.12;
+}
+
+.icon {
+  font-size: 2.8rem;
+  display: block;
+  margin-bottom: 18px;
+  line-height: 1;
+}
+
+.vibeName {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--c);
+  margin-bottom: 8px;
+}
+
+.vibeDesc {
+  font-size: 0.88rem;
+  color: #555;
+  line-height: 1.6;
+}
+
+.launchHint {
+  margin-top: 20px;
+  font-size: 0.75rem;
+  color: #333;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.card:hover .launchHint {
+  opacity: 1;
+  color: var(--c);
+}
+
+/* ── Footer ── */
+.footer {
+  text-align: center;
+  padding: 32px;
+  border-top: 1px solid #111;
+  color: #2a2a2a;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
