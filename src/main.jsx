@@ -1,3 +1,6 @@
+// Reload when Vite fails to preload a chunk (stale cache after deploy)
+window.addEventListener('vite:preloadError', () => window.location.reload())
+
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './styles/global.css'
