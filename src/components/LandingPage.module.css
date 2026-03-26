@@ -1,15 +1,18 @@
 .page {
-  min-height: 100vh;
+  /* Override body overflow:hidden so the landing page can scroll */
+  position: fixed;
+  inset: 0;
+  overflow-y: auto;
   background: #080808;
   color: #fff;
   font-family: system-ui, -apple-system, sans-serif;
-  overflow-y: auto;
+  z-index: 0;
 }
 
 /* ── Hero ── */
 .hero {
   text-align: center;
-  padding: 96px 24px 64px;
+  padding: 80px 24px 52px;
   position: relative;
 }
 
@@ -22,7 +25,7 @@
 }
 
 .title {
-  font-size: clamp(3.5rem, 12vw, 9rem);
+  font-size: clamp(3rem, 14vw, 9rem);
   font-weight: 900;
   letter-spacing: -0.03em;
   margin: 0;
@@ -41,15 +44,15 @@
 }
 
 .tagline {
-  margin: 20px 0 0;
-  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  margin: 18px 0 0;
+  font-size: clamp(0.95rem, 2.5vw, 1.2rem);
   color: #555;
   letter-spacing: 0.04em;
 }
 
 .heroSub {
-  margin: 36px 0 0;
-  font-size: 0.9rem;
+  margin: 28px 0 0;
+  font-size: clamp(0.7rem, 1.8vw, 0.85rem);
   color: #333;
   text-transform: uppercase;
   letter-spacing: 0.15em;
@@ -58,11 +61,31 @@
 /* ── Grid ── */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 16px;
-  padding: 0 32px 100px;
+  padding: 0 32px 80px;
   max-width: 1280px;
   margin: 0 auto;
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 0 20px 80px;
+    gap: 12px;
+  }
+}
+
+@media (max-width: 520px) {
+  .grid {
+    grid-template-columns: 1fr;
+    padding: 0 16px 80px;
+    gap: 10px;
+  }
+
+  .hero {
+    padding: 56px 20px 40px;
+  }
 }
 
 /* ── Card ── */
@@ -70,7 +93,7 @@
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.07);
   border-radius: 18px;
-  padding: 32px 24px 28px;
+  padding: 28px 22px 24px;
   cursor: pointer;
   transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
   position: relative;
@@ -91,10 +114,10 @@
 }
 
 .card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-4px);
   background: rgba(255, 255, 255, 0.06);
   border-color: var(--c);
-  box-shadow: 0 12px 40px color-mix(in srgb, var(--c) 25%, transparent);
+  box-shadow: 0 12px 40px color-mix(in srgb, var(--c) 20%, transparent);
 }
 
 .card:hover::before {
@@ -102,7 +125,7 @@
 }
 
 .card:active {
-  transform: translateY(-2px);
+  transform: translateY(-1px);
 }
 
 .cardGlow {
@@ -124,49 +147,47 @@
 }
 
 .icon {
-  font-size: 2.8rem;
+  font-size: 2.4rem;
   display: block;
-  margin-bottom: 18px;
+  margin-bottom: 14px;
   line-height: 1;
 }
 
 .vibeName {
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--c);
-  margin-bottom: 8px;
+  margin-bottom: 7px;
 }
 
 .vibeDesc {
-  font-size: 0.88rem;
+  font-size: 0.85rem;
   color: #555;
   line-height: 1.6;
 }
 
 .launchHint {
-  margin-top: 20px;
-  font-size: 0.75rem;
-  color: #333;
+  margin-top: 16px;
+  font-size: 0.72rem;
+  color: transparent;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  opacity: 0;
-  transition: opacity 0.2s ease;
+  transition: color 0.2s ease;
 }
 
 .card:hover .launchHint {
-  opacity: 1;
   color: var(--c);
 }
 
 /* ── Footer ── */
 .footer {
   text-align: center;
-  padding: 32px;
+  padding: 28px;
   border-top: 1px solid #111;
   color: #2a2a2a;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
