@@ -65,6 +65,14 @@ export const VIBES = [
     Scene:    lazy(() => import('./focus/Scene')),
     PlayerUI: lazy(() => import('./focus/PlayerUI')),
   },
+  {
+    id: 'cassette',
+    label: 'CASSETTE',
+    icon: '📼',
+    color: '#c89018',
+    Scene:    lazy(() => import('./cassette/Scene')),
+    PlayerUI: lazy(() => import('./cassette/PlayerUI')),
+  },
 ]
 
 export const DEFAULT_VIBE = 'winamp'

@@ -1,0 +1,571 @@
+/* ── Boombox / Cassette player UI ── */
+
+.panel {
+  position: fixed;
+  bottom: 24px;
+  left: 20px;
+  width: 360px;
+  background: #d8cdb8;
+  border-radius: 10px 10px 8px 8px;
+  border: 2px solid #8a7848;
+  box-shadow:
+    0 8px 32px rgba(0,0,0,0.7),
+    0 2px 0 #f4ecd8 inset,
+    0 -2px 0 #a89060 inset;
+  font-family: 'Courier New', Courier, monospace;
+  z-index: 100;
+  user-select: none;
+  overflow: hidden;
+}
+
+/* ── Title bar (dark charcoal strip) ── */
+.titleBar {
+  background: linear-gradient(180deg, #2a2218 0%, #1a1408 100%);
+  padding: 7px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: grab;
+  border-bottom: 2px solid #0a0804;
+}
+
+.titleLeft {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  min-width: 0;
+}
+
+.cassetteIcon {
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.titleText {
+  font-size: 11px;
+  color: #d4c898;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 240px;
+}
+
+.minimizeBtn {
+  background: none;
+  border: none;
+  color: #8a7848;
+  cursor: pointer;
+  font-size: 11px;
+  padding: 0 2px;
+  flex-shrink: 0;
+}
+.minimizeBtn:hover { color: #d4c898; }
+
+/* ── Now-playing row: cassette window + display panel ── */
+.nowPlaying {
+  display: flex;
+  align-items: stretch;
+  gap: 10px;
+  padding: 10px 12px 8px;
+  background: #c8bd9e;
+  border-bottom: 1px solid #a89060;
+}
+
+/* ── Cassette window (CSS cassette with spinning reels) ── */
+.cassetteWindow {
+  flex-shrink: 0;
+  background: #0a0804;
+  border-radius: 5px;
+  border: 2px solid #3a2a10;
+  box-shadow: inset 0 2px 6px rgba(0,0,0,0.8), 0 1px 0 #f0e8d0;
+  padding: 8px 10px 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  width: 140px;
+}
+
+.reelRow {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 4px;
+}
+
+.reel {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 2px solid #2a1e0e;
+  background: #100c06;
+  box-shadow: inset 0 1px 4px rgba(0,0,0,0.7);
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+@keyframes spinReel {
+  to { transform: rotate(360deg); }
+}
+
+.reelInner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  animation: spinReel 2s linear infinite;
+  animation-play-state: paused;
+}
+
+.spoke {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 45%;
+  height: 2px;
+  background: #4a3820;
+  transform-origin: left center;
+  border-radius: 1px;
+}
+
+.reelHub {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 28%;
+  height: 28%;
+  border-radius: 50%;
+  background: #2a1e0e;
+  transform: translate(-50%, -50%);
+  border: 1px solid #5a4020;
+  box-shadow: 0 0 3px rgba(0,0,0,0.8);
+}
+
+.tapeLine {
+  width: 62%;
+  height: 3px;
+  background: linear-gradient(to right, #3d2305, #6a4010, #3d2305);
+  border-radius: 1px;
+  flex-shrink: 0;
+}
+
+/* ── Right display panel ── */
+.displayPanel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  justify-content: center;
+}
+
+.timeDisplay {
+  background: #0d0900;
+  border: 1px solid #3a2800;
+  border-radius: 4px;
+  box-shadow: inset 0 1px 4px rgba(0,0,0,0.8);
+  padding: 5px 8px;
+  color: #ff9900;
+  font-size: 18px;
+  font-family: 'Courier New', Courier, monospace;
+  letter-spacing: 2px;
+  text-shadow: 0 0 8px #ff9900, 0 0 16px rgba(255,153,0,0.4);
+  line-height: 1.25;
+  text-align: center;
+}
+
+.timeDivider {
+  font-size: 12px;
+  color: #884400;
+  text-shadow: none;
+}
+
+.timeDuration {
+  font-size: 12px;
+  color: #cc6600;
+  text-shadow: 0 0 6px #cc6600;
+}
+
+/* VU meter */
+.vuMeter {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 28px;
+  background: #0d0900;
+  border: 1px solid #3a2800;
+  border-radius: 4px;
+  padding: 3px 4px;
+  box-shadow: inset 0 1px 4px rgba(0,0,0,0.8);
+}
+
+.vuBar {
+  flex: 1;
+  min-height: 2px;
+  max-height: 100%;
+  border-radius: 1px 1px 0 0;
+  background: repeating-linear-gradient(
+    to top,
+    #ff9900 0px,
+    #ff9900 3px,
+    transparent 3px,
+    transparent 5px
+  );
+  transition: height 0.06s linear;
+}
+
+/* ── Track info ── */
+.trackInfo {
+  padding: 6px 12px 4px;
+  background: #c8bd9e;
+}
+
+.trackTitle {
+  font-size: 12px;
+  font-weight: bold;
+  color: #2a1e0e;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.trackArtist {
+  font-size: 10px;
+  color: #6a5030;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: 2px;
+}
+
+/* ── Control strip ── */
+.controlStrip {
+  background: #1e1810;
+  padding: 7px 10px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+/* Seek bar */
+.seekBar {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.seekTime {
+  font-size: 9px;
+  color: #8a7040;
+  flex-shrink: 0;
+  font-family: 'Courier New', monospace;
+}
+
+.seekTrack {
+  flex: 1;
+  height: 4px;
+  background: #3a2800;
+  border-radius: 2px;
+  position: relative;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.6);
+}
+
+.seekFill {
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  background: linear-gradient(to right, #ff8800, #ffaa00);
+  border-radius: 2px;
+  pointer-events: none;
+}
+
+.seekThumb {
+  position: absolute;
+  top: 50%;
+  width: 10px;
+  height: 10px;
+  background: #f0c050;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 4px rgba(255,180,0,0.7);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+.seekBar:hover .seekThumb { opacity: 1; }
+
+/* Controls row */
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Button group — dark rounded plastic housing */
+.btnGroup {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  background: #0e0b06;
+  border-radius: 6px;
+  padding: 3px 5px;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.8), 0 1px 0 rgba(255,255,255,0.05);
+}
+
+/* Plastic control buttons */
+.ctrlBtn {
+  background: linear-gradient(180deg, #ddd0b8 0%, #b09868 100%);
+  border: 1px solid #7a6030;
+  border-bottom: 2px solid #5a4018;
+  box-shadow: 0 2px 0 #3a2808, inset 0 1px 0 rgba(255,255,255,0.45);
+  border-radius: 3px;
+  color: #2a1e0e;
+  cursor: pointer;
+  padding: 3px 6px;
+  font-size: 13px;
+  line-height: 1;
+  transition: all 0.07s;
+  min-width: 24px;
+}
+.ctrlBtn:hover {
+  background: linear-gradient(180deg, #eeddc8 0%, #c8aa78 100%);
+}
+.ctrlBtn:active {
+  transform: translateY(2px);
+  box-shadow: 0 0 0 #3a2808, inset 0 1px 0 rgba(0,0,0,0.1);
+  border-bottom-width: 1px;
+}
+.ctrlBtnActive {
+  background: linear-gradient(180deg, #f0c860 0%, #c89820 100%);
+  color: #3a1800;
+  border-color: #9a6010;
+  border-bottom-color: #6a4000;
+}
+
+/* Skip buttons */
+.skipBtn {
+  background: linear-gradient(180deg, #ddd0b8 0%, #b09868 100%);
+  border: 1px solid #7a6030;
+  border-bottom: 2px solid #5a4018;
+  box-shadow: 0 2px 0 #3a2808, inset 0 1px 0 rgba(255,255,255,0.45);
+  border-radius: 3px;
+  color: #2a1e0e;
+  cursor: pointer;
+  padding: 3px 7px;
+  font-size: 14px;
+  line-height: 1;
+  transition: all 0.07s;
+}
+.skipBtn:hover {
+  background: linear-gradient(180deg, #eeddc8 0%, #c8aa78 100%);
+}
+.skipBtn:active {
+  transform: translateY(2px);
+  box-shadow: none;
+  border-bottom-width: 1px;
+}
+
+/* Play/Pause button — amber gold */
+.playBtn {
+  background: linear-gradient(180deg, #f8d068 0%, #c88818 100%);
+  border: 1px solid #9a6810;
+  border-bottom: 3px solid #7a4800;
+  box-shadow: 0 4px 0 #4a2800, inset 0 1px 0 rgba(255,255,255,0.55);
+  border-radius: 50%;
+  width: 42px;
+  height: 42px;
+  cursor: pointer;
+  font-size: 16px;
+  color: #3a1800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.07s;
+  flex-shrink: 0;
+}
+.playBtn:hover {
+  background: linear-gradient(180deg, #ffe080 0%, #e0a020 100%);
+}
+.playBtn:active {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 #4a2800, inset 0 1px 0 rgba(0,0,0,0.15);
+  border-bottom-width: 1px;
+}
+
+/* Volume */
+.volArea {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.volIcon { font-size: 12px; }
+.volSlider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 52px;
+  height: 3px;
+  background: #3a2800;
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+}
+.volSlider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 11px;
+  height: 11px;
+  background: #f0c050;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 0 3px rgba(255,180,0,0.6);
+  margin-top: -4px;
+}
+.volSlider::-moz-range-thumb {
+  width: 11px;
+  height: 11px;
+  background: #f0c050;
+  border-radius: 50%;
+  cursor: pointer;
+  border: none;
+}
+
+/* ── Tab bar ── */
+.tabBar {
+  display: flex;
+  background: #2a2218;
+  border-top: 1px solid #0a0804;
+}
+
+.tabBtn {
+  flex: 1;
+  background: none;
+  border: none;
+  color: #6a5830;
+  cursor: pointer;
+  font-family: 'Courier New', monospace;
+  font-size: 9px;
+  letter-spacing: 0.8px;
+  padding: 6px 4px;
+  text-transform: uppercase;
+  transition: color 0.15s, background 0.15s;
+  border-right: 1px solid #0a0804;
+}
+.tabBtn:last-child { border-right: none; }
+.tabBtn:hover { color: #d4c898; background: rgba(255,255,255,0.04); }
+
+.tabActive {
+  color: #f0c860 !important;
+  background: rgba(240,200,96,0.08) !important;
+  border-bottom: 2px solid #f0c860;
+}
+
+/* ── Tab content ── */
+.tabContent {
+  max-height: 180px;
+  overflow-y: auto;
+  background: #d0c5a8;
+  scrollbar-width: thin;
+  scrollbar-color: #a89060 #c0b090;
+}
+
+.emptyMsg {
+  font-size: 10px;
+  color: #8a7048;
+  text-align: center;
+  padding: 16px;
+  font-family: 'Courier New', monospace;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.listItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 12px;
+  cursor: pointer;
+  border-bottom: 1px solid #b8a880;
+  transition: background 0.1s;
+}
+.listItem:hover { background: #c0b090; }
+
+.listItemActive {
+  background: #c89020 !important;
+  border-left: 3px solid #f0c860;
+}
+
+.listNum {
+  font-size: 10px;
+  color: #8a7048;
+  width: 18px;
+  text-align: right;
+  flex-shrink: 0;
+  font-family: 'Courier New', monospace;
+}
+
+.listInfo { min-width: 0; }
+
+.listTitle {
+  font-size: 11px;
+  color: #2a1e0e;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: bold;
+}
+
+.listArtist {
+  font-size: 9px;
+  color: #6a5030;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: 1px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ── Search ── */
+.searchForm {
+  display: flex;
+  gap: 0;
+  padding: 8px 10px 6px;
+  background: #c8bd9e;
+  border-bottom: 1px solid #a89060;
+}
+
+.searchInput {
+  flex: 1;
+  background: #0d0900;
+  border: 1px solid #5a4018;
+  border-right: none;
+  border-radius: 3px 0 0 3px;
+  color: #ff9900;
+  font-family: 'Courier New', monospace;
+  font-size: 11px;
+  padding: 5px 8px;
+  outline: none;
+  text-shadow: 0 0 6px rgba(255,153,0,0.4);
+}
+.searchInput::placeholder { color: #6a4010; }
+.searchInput:focus { border-color: #c87808; }
+
+.searchBtn {
+  background: linear-gradient(180deg, #f0c860 0%, #c88818 100%);
+  border: 1px solid #9a6810;
+  border-radius: 0 3px 3px 0;
+  color: #2a1000;
+  cursor: pointer;
+  font-family: 'Courier New', monospace;
+  font-size: 10px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  padding: 5px 10px;
+  text-transform: uppercase;
+  transition: background 0.1s;
+}
+.searchBtn:hover {
+  background: linear-gradient(180deg, #ffe080 0%, #e0a020 100%);
+}
