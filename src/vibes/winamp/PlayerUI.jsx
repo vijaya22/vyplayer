@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { useAudioEngine } from '../../hooks/useAudioEngine'
 import { useDraggable } from '../../hooks/useDraggable'
 import { usePlayerStore } from '../../store/playerStore'
 import TitleBar from './ui/TitleBar'
@@ -14,7 +13,7 @@ import styles from './ui/PlayerWindow.module.css'
 const TABS = ['PLAYLIST', 'SEARCH']
 
 export default function WinampPlayerUI() {
-  const { seek } = useAudioEngine()
+  const seek = usePlayerStore((s) => s.seek)
   const [tab, setTab] = useState('PLAYLIST')
   const [minimized, setMinimized] = useState(false)
   const { pos, onMouseDown, onTouchStart } = useDraggable({ x: 20, y: 60 })

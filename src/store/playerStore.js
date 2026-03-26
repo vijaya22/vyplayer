@@ -19,6 +19,10 @@ export const usePlayerStore = create((set) => ({
   amplitude: 0,
   frequencyBands: new Array(16).fill(0),
 
+  // Seek — registered by useAudioEngine after audio element is ready
+  seek: () => {},
+  setSeek: (fn) => set({ seek: fn }),
+
   // Actions
   setPlaying: (isPlaying) => set({ isPlaying }),
   setTrack: (track, index) => set({ currentTrack: track, currentIndex: index, progress: 0 }),

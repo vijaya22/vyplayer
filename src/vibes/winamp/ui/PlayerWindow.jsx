@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useAudioEngine } from '../../../hooks/useAudioEngine'
+import { usePlayerStore } from '../../../store/playerStore'
 import { useDraggable } from '../../../hooks/useDraggable'
 import TitleBar from './TitleBar'
 import TrackDisplay from './TrackDisplay'
@@ -33,7 +33,7 @@ function DraggablePanel({ title, initialPos, children, style }) {
 }
 
 export default function PlayerWindow() {
-  const { seek } = useAudioEngine()
+  const seek = usePlayerStore((s) => s.seek)
 
   return (
     <>

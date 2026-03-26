@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { useAudioEngine } from '../../hooks/useAudioEngine'
 import { useItunesSearch } from '../../hooks/useItunesSearch'
 import { usePlayerStore } from '../../store/playerStore'
 import { useDraggable } from '../../hooks/useDraggable'
@@ -77,7 +76,7 @@ function SearchTab() {
 }
 
 export default function WMPPlayerUI() {
-  const { seek } = useAudioEngine()
+  const seek = usePlayerStore((s) => s.seek)
   const [tab, setTab] = useState('SEARCH')
   const [minimized, setMinimized] = useState(false)
   const [shuffle, setShuffle] = useState(false)

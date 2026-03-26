@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { useAudioEngine } from '../../hooks/useAudioEngine'
 import { useItunesSearch } from '../../hooks/useItunesSearch'
 import { usePlayerStore } from '../../store/playerStore'
 import { useDraggable } from '../../hooks/useDraggable'
@@ -15,7 +14,7 @@ function formatTime(secs) {
 const TABS = ['PLAYER', 'PLAYLIST', 'SEARCH']
 
 export default function FloweryPlayerUI() {
-  const { seek } = useAudioEngine()
+  const seek = usePlayerStore((s) => s.seek)
   const [tab, setTab] = useState('PLAYER')
   const { pos, onMouseDown } = useDraggable({ x: 20, y: 60 })
   const { isPlaying, setPlaying, prevTrack, nextTrack, currentTrack, volume, setVolume, playlist, currentIndex, setTrack, setPlaying: play } = usePlayerStore()

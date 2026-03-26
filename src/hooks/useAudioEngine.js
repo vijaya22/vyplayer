@@ -8,7 +8,7 @@ export function useAudioEngine() {
   const sourceRef = useRef(null)
   const rafRef = useRef(null)
 
-  const { currentTrack, isPlaying, volume, setPlaying, setProgress, setDuration, setAmplitude, setFrequencyBands, nextTrack } =
+  const { currentTrack, isPlaying, volume, setPlaying, setProgress, setDuration, setAmplitude, setFrequencyBands, nextTrack, setSeek } =
     usePlayerStore()
 
   // Init audio element once
@@ -20,6 +20,12 @@ export function useAudioEngine() {
 
     audio.addEventListener('ended', () => {
       nextTrack()
+    })
+
+    // Register seek in the global store so any PlayerUI can call it
+    setSeek((ratio) => {
+      if (!audioRef.current?.duration) return
+      audioRef.current.currentTime = ratio * audioRef.current.duration
     })
 
     return () => {
@@ -116,10 +122,4 @@ export function useAudioEngine() {
     return () => cancelAnimationFrame(rafRef.current)
   }, [])
 
-  function seek(ratio) {
-    if (!audioRef.current || !audioRef.current.duration) return
-    audioRef.current.currentTime = ratio * audioRef.current.duration
-  }
-
-  return { seek }
 }
