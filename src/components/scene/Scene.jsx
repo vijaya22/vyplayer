@@ -17,7 +17,10 @@ export default function Scene() {
       onCreated={({ gl }) => {
         gl.domElement.addEventListener('webglcontextlost', (e) => {
           e.preventDefault()
-          window.location.reload()
+          if (!sessionStorage.getItem('reloaded')) {
+            sessionStorage.setItem('reloaded', '1')
+            window.location.reload()
+          }
         })
       }}
     >

@@ -13,8 +13,6 @@ function randomInCircle(r) {
 
 export default function AlchemyParticles() {
   const pointsRef = useRef()
-  const amplitude = usePlayerStore((s) => s.amplitude)
-  const frequencyBands = usePlayerStore((s) => s.frequencyBands)
 
   // Particle state stored in refs to avoid re-renders
   const state = useMemo(() => {
@@ -47,6 +45,7 @@ export default function AlchemyParticles() {
     if (!pointsRef.current) return
     const { pos, color, vel, life, maxL, hues } = state
     const t = clock.getElapsedTime()
+    const { amplitude, frequencyBands } = usePlayerStore.getState()
     const beat = 1 + amplitude * 2.5
 
     // Average of lower bands for bass reaction
