@@ -51,9 +51,9 @@ export const VIBES = [
   },
   {
     id: 'sad',
-    label: 'SAD',
+    label: 'RAIN',
     icon: '🌧️',
-    color: '#ffaa44',
+    color: '#4a88b8',
     Scene:    lazy(() => import('./sad/Scene')),
     PlayerUI: lazy(() => import('./sad/PlayerUI')),
   },
