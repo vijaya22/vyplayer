@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useItunesSearch } from '../../hooks/useItunesSearch'
+
 import { usePlayerStore } from '../../store/playerStore'
 import { useDraggable } from '../../hooks/useDraggable'
 import styles from './PlayerUI.module.css'
@@ -11,7 +11,7 @@ function formatTime(secs) {
   return `${m}:${s}`
 }
 
-const TABS = ['PLAYER', 'PLAYLIST', 'SEARCH']
+const TABS = ['PLAYER', 'PLAYLIST']
 
 export default function FloweryPlayerUI() {
   const seek = usePlayerStore((s) => s.seek)
@@ -100,8 +100,6 @@ export default function FloweryPlayerUI() {
           </div>
         )}
 
-        {/* SEARCH tab */}
-        {tab === 'SEARCH' && <SearchTab />}
       </div>
     </div>
   )
@@ -126,39 +124,3 @@ function SeekBar({ onSeek }) {
   )
 }
 
-function SearchTab() {
-  const [query, setQuery] = useState('')
-  const { results, loading, search } = useItunesSearch()
-  const { setPlaylist, setTrack, setPlaying } = usePlayerStore()
-
-  function handlePlay(track, i) {
-    setPlaylist(results)
-    setTrack(track, i)
-    setPlaying(true)
-  }
-
-  return (
-    <div className={styles.searchContent}>
-      <form onSubmit={(e) => { e.preventDefault(); search(query) }} className={styles.searchForm}>
-        <input
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          placeholder="Search for a song..."
-          className={styles.searchInput}
-        />
-        <button className={styles.searchBtn} type="submit">
-          {loading ? '…' : '🔍'}
-        </button>
-      </form>
-
-      <div className={styles.listContent}>
-        {results.map((track, i) => (
-          <div key={track.id} className={styles.listItem} onClick={() => handlePlay(track, i)}>
-            <div className={styles.listTitle}>{track.title}</div>
-            <div className={styles.listArtist}>{track.artist}</div>
-          </div>
-        ))}
-      </div>
-    </div>
-  )
-}

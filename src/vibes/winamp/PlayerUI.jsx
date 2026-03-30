@@ -6,11 +6,11 @@ import TrackDisplay from './ui/TrackDisplay'
 import Controls from './ui/Controls'
 import SeekBar from './ui/SeekBar'
 import VolumeSlider from './ui/VolumeSlider'
-import SearchWindow from './ui/SearchWindow'
+
 import PlaylistWindow from './ui/PlaylistWindow'
 import styles from './ui/PlayerWindow.module.css'
 
-const TABS = ['PLAYLIST', 'SEARCH']
+const TABS = ['PLAYLIST']
 
 export default function WinampPlayerUI() {
   const seek = usePlayerStore((s) => s.seek)
@@ -56,7 +56,6 @@ export default function WinampPlayerUI() {
           {/* Tab content */}
           <div className={styles.tabContent}>
             {tab === 'PLAYLIST' && <PlaylistWindow />}
-            {tab === 'SEARCH'   && <SearchWindow />}
           </div>
         </>
       )}
