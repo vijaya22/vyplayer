@@ -10,10 +10,21 @@ export function useItunesSearch() {
     setLoading(true)
     setError(null)
     try {
-      const url = `https://itunes.apple.com/search?term=${encodeURIComponent(query)}&media=music&limit=20&entity=song`
-      const res = await fetch(url)
-      const data = await res.json()
-      const tracks = data.results
+      const params = `term=${encodeURIComponent(query)}&media=music&limit=20&entity=song&country=US`
+      const directUrl = `https://itunes.apple.com/search?${params}`
+
+      let data
+      try {
+        const res = await fetch(directUrl)
+        data = await res.json()
+      } catch {
+        // iOS Safari often 301-redirects itunes.apple.com without CORS headers;
+        // fall back to a CORS proxy when the direct call fails.
+        const res = await fetch(`https://corsproxy.io/?${encodeURIComponent(directUrl)}`)
+        data = await res.json()
+      }
+
+      const tracks = (data.results || [])
         .filter((r) => r.previewUrl)
         .map((r) => ({
           id: r.trackId,

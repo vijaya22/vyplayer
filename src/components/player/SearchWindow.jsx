@@ -1,11 +1,11 @@
 import { useState } from 'react'
-import { useItunesSearch } from '../../hooks/useItunesSearch'
+import { useJamendoSearch } from '../../hooks/useJamendoSearch'
 import { usePlayerStore } from '../../store/playerStore'
 import styles from './SearchWindow.module.css'
 
 export default function SearchWindow() {
   const [query, setQuery] = useState('')
-  const { results, loading, error, search } = useItunesSearch()
+  const { results, loading, error, search } = useJamendoSearch()
   const { setPlaylist, setTrack, setPlaying } = usePlayerStore()
 
   function handleSearch(e) {
@@ -33,7 +33,7 @@ export default function SearchWindow() {
           className={styles.input}
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          placeholder="Search iTunes..."
+          placeholder="Search songs..."
         />
         <button className={styles.btn} type="submit">GO</button>
       </form>

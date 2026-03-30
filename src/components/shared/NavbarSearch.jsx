@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import { createPortal } from 'react-dom'
-import { useItunesSearch } from '../../hooks/useItunesSearch'
+import { useJamendoSearch } from '../../hooks/useJamendoSearch'
 import { usePlayerStore } from '../../store/playerStore'
 import { useIsMobile } from '../../hooks/useIsMobile'
 import styles from './NavbarSearch.module.css'
@@ -8,7 +8,7 @@ import styles from './NavbarSearch.module.css'
 export default function NavbarSearch({ onMobileToggle, onTrackSelect }) {
   const [query, setQuery] = useState('')
   const [open, setOpen] = useState(false)
-  const { results, loading, search } = useItunesSearch()
+  const { results, loading, search } = useJamendoSearch()
   const currentTrack = usePlayerStore((s) => s.currentTrack)
   const { setPlaylist, setTrack, setPlaying } = usePlayerStore()
   const isMobile = useIsMobile()
